@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vue-js Comment App</title>
+	<link rel="stylesheet" type="text/css" href="/bower_components/materialize/dist/css/materialize.min.css">
+	<link rel="stylesheet" type="text/css" href="/style.css">
+</head>
+<body>
+<div class="container">
+	<div id="app">
+		<h1>Vue-js comment App</h1>
+
+		<button class="btn" v-on:click="showForm()" v-if="!formOpened">New Comment</button>
+		<form v-on:submit.prevent="addComment">
+			<div class="row" v-if="formOpened">
+				<br><legend>Write a comment</legend><br>
+				<input type="text" v-model="newComment.name" placeholder="Your Name">
+				<input type="text" v-model="newComment.title" placeholder="Title Comment">
+				<input type="text" v-model="newComment.desc" placeholder="Description Comment">
+
+				<button class="btn">Send</button>
+				<a class="btn" v-on:click="hideForm()">Cancel</a>
+			</div>
+		</form>
+
+		<div class="row" v-for="comments in comment">
+			<h5>List Comment</h5>
+			<p>Name : {{comments.name}}</p>
+			<p>Title : {{comments.title}}</p>
+			<p>Descrption : {{comments.desc}}</p>
+			<a class="btn red" v-on:click="removeComment(comments)">Hapus</a>
+		</div>
+	</div>
+</div>
+</body>
+
+<script src="/bower_components/vue/dist/vue.min.js"></script>
+<script src="/app.js"></script>
+<script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/bower_components/materialize/dist/js/materialize.min.js"></script>
+</html>
